@@ -1,0 +1,15 @@
+{% extends "blog/base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    {% for post in posts %}
+        <article class="mb-4">
+            <h2><a href="{% url 'post-detail' post.slug %}">{{ post.title }}</a></h2>
+            <p class="text-muted">
+                Posted by {{ post.author }} on {{ post.date_posted|date:"F d, Y" }}
+            </p>
+            <p>{{ post.content|truncatechars:200 }}</p>
+        </article>
+    {% endfor %}
+{% endblock %}
